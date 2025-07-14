@@ -6,6 +6,7 @@
  * @version $Id$
  * @package phpMyAdmin
  */
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_WARNING);
 
 /**
  * base class

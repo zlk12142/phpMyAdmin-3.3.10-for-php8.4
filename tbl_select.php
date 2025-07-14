@@ -107,7 +107,7 @@ function PMA_tbl_select_operator(f, index, multiple) {
     switch (f.elements["func[" + index + "]"].options[f.elements["func[" + index + "]"].selectedIndex].value) {
 <?php
 reset($GLOBALS['cfg']['UnaryOperators']);
-while (list($operator) = each($GLOBALS['cfg']['UnaryOperators'])) {
+foreach ($GLOBALS['cfg']['UnaryOperators'] as $operator => $operator_value) {
     echo '        case "' . $operator . "\":\r\n";
 }
 ?>
@@ -354,7 +354,7 @@ else {
         $w = $charsets = array();
         $cnt_func = count($func);
         reset($func);
-        while (list($i, $func_type) = each($func)) {
+		foreach ($func as $i => $func_type) {
             list($charsets[$i]) = explode('_', $collations[$i]);
             if (isset($GLOBALS['cfg']['UnaryOperators'][$func_type]) && $GLOBALS['cfg']['UnaryOperators'][$func_type] == 1) {
                 $fields[$i] = '';

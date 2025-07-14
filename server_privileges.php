@@ -1251,7 +1251,7 @@ if (isset($_REQUEST['delete']) || (isset($_REQUEST['change_copy']) && $_REQUEST[
             }
             $drop_user_error = '';
             foreach ($queries as $sql_query) {
-                if ($sql_query{0} != '#') {
+                if ($sql_query[0] != '#') {
                     if (! PMA_DBI_try_query($sql_query, $GLOBALS['userlink'])) {
                         $drop_user_error .= PMA_DBI_getError() . "\n";
                     }
@@ -1278,7 +1278,7 @@ if (isset($_REQUEST['delete']) || (isset($_REQUEST['change_copy']) && $_REQUEST[
 if (isset($_REQUEST['change_copy'])) {
     $tmp_count = 0;
     foreach ($queries as $sql_query) {
-        if ($sql_query{0} != '#') {
+        if ($sql_query[0] != '#') {
             PMA_DBI_query($sql_query);
         }
         // when there is a query containing a hidden password, take it

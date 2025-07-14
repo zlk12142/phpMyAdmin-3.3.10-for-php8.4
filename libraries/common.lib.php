@@ -1784,7 +1784,7 @@ function PMA_flipstring($string, $Separator = "<br />\n")
     $charbuff = false;
 
     for ($i = 0, $str_len = strlen($string); $i < $str_len; $i++) {
-        $char = $string{$i};
+        $char = $string[$i];
         $append = false;
 
         if ($char == '&') {

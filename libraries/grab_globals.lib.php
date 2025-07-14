@@ -58,6 +58,38 @@ function PMA_recursive_extract($array, &$target, $sanitize = true)
     return true;
 }
 
+function PMA_recursive_extract_globals($array, $sanitize = true)
+{
+    if (! is_array($array)) {
+        return false;
+    }
+
+    if ($sanitize) {
+        $valid_variables = preg_replace($GLOBALS['_import_blacklist'], '',
+            array_keys($array));
+        $valid_variables = array_unique($valid_variables);
+    } else {
+        $valid_variables = array_keys($array);
+    }
+
+    foreach ($valid_variables as $key) {
+
+        if (strlen($key) === 0) {
+            continue;
+        }
+
+        if (is_array($array[$key])) {
+            // there could be a variable coming from a cookie of
+            // another application, with the same name as this array
+            unset($GLOBALS[$key]);
+
+            PMA_recursive_extract($array[$key], $GLOBALS[$key], false);
+        } else {
+            $GLOBALS[$key] = $array[$key];
+        }
+    }
+    return true;
+}
 
 /**
  * @var array $_import_blacklist variable names that should NEVER be imported
@@ -85,11 +117,11 @@ $_import_blacklist = array(
 );
 
 if (! empty($_GET)) {
-    PMA_recursive_extract($_GET, $GLOBALS);
+    PMA_recursive_extract_globals($_GET);
 }
 
 if (! empty($_POST)) {
-    PMA_recursive_extract($_POST, $GLOBALS);
+    PMA_recursive_extract_globals($_POST);
 }
 
 if (! empty($_FILES)) {

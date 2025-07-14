@@ -75,7 +75,7 @@ class PMA_PDF extends TCPDF
         if (!$orientation) {
             $orientation = $this->DefOrientation;
         } else {
-            $orientation = strtoupper($orientation{0});
+            $orientation = strtoupper($orientation[0]);
             if ($orientation != $this->DefOrientation) {
                 $this->OrientationChanges[$this->page] = true;
             }

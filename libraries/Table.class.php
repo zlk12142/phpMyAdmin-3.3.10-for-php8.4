@@ -392,7 +392,7 @@ class PMA_Table
             // Force an auto_increment field to be part of the primary key
             // even if user did not tick the PK box;
             if ($extra == 'AUTO_INCREMENT') {
-                $primary_cnt = count($field_primary);
+                $primary_cnt = (isset($field_primary)) ? count($field_primary) : 0;
                 if (1 == $primary_cnt) {
                     for ($j = 0; $j < $primary_cnt && $field_primary[$j] != $index; $j++) {
                         //void
