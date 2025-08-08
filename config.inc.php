@@ -69,4 +69,9 @@ $cfg['Servers'][$i]['bs_temp_log_threshold'] = '32M';
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
 
+if (file_exists('config2.inc.php')) {
+    /* config2.inc.php is not managed by git. */
+    /* You can overwrite some of the $cfg values inside it */
+    include('config2.inc.php');
+}
 ?>
