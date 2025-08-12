@@ -101,7 +101,7 @@ $i = 1;
  *
  * @global string $cfg['Servers'][$i]['host']
  */
-$cfg['Servers'][$i]['host'] = 'localhost';
+$cfg['Servers'][$i]['host'] = '127.0.0.1';
 
 /**
  * MySQL port - leave blank for default port
@@ -136,7 +136,7 @@ $cfg['Servers'][$i]['connect_type'] = 'tcp';
  *
  * @global string $cfg['Servers'][$i]['extension']
  */
-$cfg['Servers'][$i]['extension'] = 'mysql';
+$cfg['Servers'][$i]['extension'] = 'mysqli';
 
 /* rajk - added for blobstreaming */
 $cfg['Servers'][$i]['bs_garbage_threshold'] = '';
